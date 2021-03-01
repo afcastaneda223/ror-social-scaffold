@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   devise_for :users
+  patch '/users/:id', to: 'users#add'
 
   resources :users, only: [:index, :show]
   resources :posts, only: [:index, :create] do
