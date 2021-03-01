@@ -13,4 +13,5 @@ class User < ApplicationRecord
 
   has_many :sent_friendships, class_name: "Friendship", source: "sender"
   has_many :received_friendships, class_name: "Friendship", source: "receiver"
+  
 end
