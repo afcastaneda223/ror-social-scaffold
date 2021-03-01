@@ -9,4 +9,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+
+
+  has_many :sent_friendships, class_name: "Friendship", source: "sender"
+  has_many :received_friendships, class_name: "Friendship", source: "receiver"
 end
