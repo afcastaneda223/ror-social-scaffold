@@ -13,5 +13,23 @@ class User < ApplicationRecord
 
   has_many :sent_friendships, class_name: "Friendship", source: "sender"
   has_many :received_friendships, class_name: "Friendship", source: "receiver"
-  
+
+
+  def self.friends(current_user)
+    current_user.sent_friendships.where(status:true) ## Plus
+    current_user.received_friendships.where(status:true)
+  end
+
+  def self.sent_friendships(current_user)
+    current_user.sent_friendships.where(status:nil)
+  end
+
+  def self.pending_friendships(current_user)
+    current_user.received_friendships.where(status:nil)
+  end
+
+
+
+
+
 end

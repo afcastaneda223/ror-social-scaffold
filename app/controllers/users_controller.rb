@@ -8,5 +8,17 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.ordered_by_most_recent
+
+    @pendings = User.pending_friendships(current_user)
+  end
+
+  def add
+    f = Friendship.find(params[:id])
+    f.status = true
+    if f.save
+      redirect_to request.referrer
+    else
+      redirect_to users_path
+    end
   end
 end

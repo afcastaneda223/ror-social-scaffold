@@ -18,4 +18,3 @@ production:
   database: ror_production
   username: username
   password: <%= ENV['PROJECT_DATABASE_PASSWORD'] %>
-  

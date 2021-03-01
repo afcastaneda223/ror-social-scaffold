@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     timeline_posts
+    @pendings = User.pending_friendships(current_user)
   end
 
   def create
