@@ -21,11 +21,11 @@ class User < ApplicationRecord
   end
 
   def self.sent_friendships(current_user)
-    current_user.sent_friendships.where(status:nil)
+    current_user.sent_friendships.where(status:false)
   end
 
   def self.pending_friendships(current_user)
-    current_user.received_friendships.where(status:nil)
+    current_user.received_friendships.where(status:false)
   end
 
 

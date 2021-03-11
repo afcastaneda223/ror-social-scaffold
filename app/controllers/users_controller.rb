@@ -10,15 +10,28 @@ class UsersController < ApplicationController
     @posts = @user.posts.ordered_by_most_recent
 
     @pendings = User.pending_friendships(current_user)
-  end
 
-  def add
-    f = Friendship.find(params[:id])
-    f.status = true
-    if f.save
-      redirect_to request.referrer
+    @status = nil 
+    if current_user == @user
+      @status = "none"
+    elsif Friendship.where(user_id: params[:id], friend_id: current_user.id, status: false)
+      @status = "accept"
+    elsif Friendship.where(user_id:current_user.id, friend_id:params[:id], status: false)
+      @status = "pending"
+
+    elsif Friendship.where(user_id: params[:id], friend_id: current_user.id, status: true)
+      @status = "unfriend"
+    elsif Friendship.where(user_id:current_user.id, friend_id:params[:id], status: true)
+      @status = "unfriend"
+
     else
-      redirect_to users_path
+      @status = "invite"
     end
   end
+
+  
+
+
+
+
 end

@@ -16,6 +16,6 @@
 <ul class="pending-req">
     <h2>Pending requests:</h2>
     <% @pendings.each do |pending|%>
-    <br><p><%= link_to pending.receiver.name, user_path(pending.receiver.id) %> <%= link_to "Accept", user_path(pending.id), method: :patch, class:"accept-btn" %> </p>
+    <br><p><%= link_to pending.receiver.name, user_path(pending.receiver.id) %> <%= link_to "Accept", edit_friendship_path(pending.id), method: :get, class:"accept-btn" %> </p>
     <% end %>
 </ul>
